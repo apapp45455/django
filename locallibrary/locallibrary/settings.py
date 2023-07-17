@@ -32,9 +32,12 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.auth', # auth 與 contenttypes 用於身分驗證
     'django.contrib.contenttypes',
     'django.contrib.sessions', # session 為會話，用於跟蹤站點與特定瀏覽器之間的狀態
+    # 能夠記錄用戶的資訊，可以使用request.session取得該用戶的ID，如:
+    ## request.session['favorite_color'] = 'blue'
+    ## favorite_color = request.session['favorite_color']
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
@@ -54,7 +57,7 @@ ROOT_URLCONF = 'locallibrary.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,3 +134,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog.apps.CatalogConfig',
 ]
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+# 由於沒有該用戶的模板，因此會出現錯誤
+LOGIN_REDIRECT_URL = '/'
+
+# 用於寄送電子郵件
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
