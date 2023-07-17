@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.sessions', # session 為會話，用於跟蹤站點與特定瀏覽器之間的狀態
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
